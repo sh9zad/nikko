@@ -9,7 +9,7 @@ Please feel free to conribute and improve in any war you think will improve this
 
 The MIT License
 
-Copyright (c) 2010-2014 Google, Inc. http://angularjs.org
+Copyright (c) 2010-2014
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
