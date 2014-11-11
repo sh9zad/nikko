@@ -42,12 +42,13 @@ class Model extends DBManager {
 
     /**
      * insert the data into the table. Based on the $cols variable the $arg should be entered to the function.
-     * @param $arg the array of data to be inserted to the table. Each row should be inserted separately.
+     * @param $arg array of data to be inserted to the table. Each row should be inserted separately.
      * @return bool|integer false if insert is not successful otherwise the ID number on the inserted row.
      */
     function insert($arg){
 		$query = "INSERT INTO `$this->tablename` (";
 		foreach ($this->cols as  $key => $value){
+
 			if ($key != 'id')
 				$query .= "`".$value."`,";
 		}
@@ -60,7 +61,7 @@ class Model extends DBManager {
 		$query .= " )";
 		
 		//return $query;
-		
+
 		$result = $this->executeQuery($query);
 
 
@@ -87,15 +88,10 @@ class Model extends DBManager {
 		return $this->executeQuery($query);
 	}
 
-    function deletelID($sid,$id){
-        $query = "DELETE FROM `$this->tablename` WHERE `$sid` = $id";
-        //return $query;
-        return $this->executeQuery($query);
-    }
     /**
      * The update function for the table data.
-     * @param $arg list of new data to be updated in the table. All the table columns should be added.
-     * @param $id The id number of the row to be changed.
+     * @param $arg array of new data to be updated in the table. All the table columns should be added.
+     * @param $id Int of id number of the row to be changed.
      * @return bool|mysqliresult false if update is not successful else the mysqliresult.
      */
     function update($arg, $id){
@@ -167,12 +163,12 @@ class Model extends DBManager {
      * Best used for preparing the result of queries for the Ajax and JSON return values.
      * @param $array The regular array which we want to change to associative.
      * @param null $cols If provided the result will be based on the names of this variable otherwise the default class $cols variable will be used.
-     * @return array An associative array created wi the data provided.
+     * @return array An associative array created wi the data provided or false on error.
      */
     protected function makeArrayDB($array, $cols = null){
 		$c = ($cols == null) ? $this->cols : $cols;
 	
-		if ($c == null || sizeof($c) < 1) return;
+		if ($c == null || sizeof($c) < 1) return false;
 	
 		$result = array();
 	
@@ -185,6 +181,7 @@ class Model extends DBManager {
 				$result[] = $tmp;
 			}
 		}
+
 		return $result;
 	}
 

@@ -6,8 +6,8 @@
  * Time: 5:35 PM
  */
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/base/model.class.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/utility/datecalc.class.php';
+include_once _PATH . 'base/model.class.php';
+include_once _PATH . 'utility/datecalc.class.php';
 
 class PermissionModel extends Model{
 
@@ -21,11 +21,12 @@ class PermissionModel extends Model{
             "object_id" => "required",
             "right_id" => "required",
             "role_id" => "required",
+            "table_name" => "required",
             "create_date" => "required"
         );
 
         $this->cols = array(
-            "id", "object_id", "right_id", "role_id", "create_date"
+            "id", "object_id", "right_id", "role_id", "table_name", "create_date"
         );
 
         $this->labels = array(

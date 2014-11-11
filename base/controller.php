@@ -42,9 +42,9 @@ class Controller {
             //print_r($this->isAdministrator(1));
         }else {
             echo "<h1>Nikko Framework: Page Not Found</h1>".
-                "<h2>Controller: ".get_class($this)."</h2>".
-                "<h2>Action: ".$action."</h2>".
-                "<p>The page or method you requested could not be found.</p>";
+            "<h2>Controller: ".get_class($this)."</h2>".
+            "<h2>Action: ".$action."</h2>".
+            "<p>The page or method you requested could not be found.</p>";
         }
     }
 
@@ -79,5 +79,7 @@ class Controller {
     protected function home(){
         $this->_load_view('home');
     }
-
+    protected function uploadimage(){
+        $this->_load_view('uploadimage');
+    }
 }

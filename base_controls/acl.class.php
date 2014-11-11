@@ -6,11 +6,11 @@
  * Time: 12:39 PM
  */
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/'.'base/controller.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/'.'base_models/object.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/'.'base_models/permission.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/'.'base_models/right.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/'.'base_models/role.class.php';
+require_once _PATH .'base/controller.php';
+require_once _PATH.'base_models/object.class.php';
+require_once _PATH.'base_models/permission.class.php';
+require_once _PATH.'base_models/right.class.php';
+require_once _PATH.'base_models/role.class.php';
 
 class ACLController extends Controller{
 
@@ -47,6 +47,8 @@ class ACLController extends Controller{
 
     function isAdministrator($user_id){
         $result = false;
+        if ($user_id == 1)
+            return true;
         $roles = $this->roleModel->getRoles($user_id);
 
         if (!is_array($roles)){

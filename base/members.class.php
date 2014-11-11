@@ -1,17 +1,14 @@
 <?php
-if (file_exists('include/db_connect.php')) {
-	include_once 'include/db_connect.php';
-} else {
-	include_once '../include/db_connect.php';
-}
 
+
+//require _PATH . 'include/db_connect.php';
 require_once 'model.class.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/localkeeper3g/base_models/membersroles.class.php';
+//include_once $_SERVER['DOCUMENT_ROOT'] . '/localkeeper3g/base_models/membersroles.class.php';
 
 class Members extends Model{
 
 	private $dbErrorHandler;
-	private $rand_key = '0iJhdisQx5UUYhgfg66oVZep';
+	private $rand_key = '0iJhdisQx85YhgfgIUGV66oVZep';
 
     private $member_roles;
 
@@ -19,7 +16,7 @@ class Members extends Model{
 	function Members(){
         parent::Model('members');
 
-		$this->cols = array("id", "fullname", "familyname" , "username", "password", "type", "manager_id", "email", "active");
+		$this->cols = array("id", "name", "familyname" , "username", "password", "type", "manager_id", "email", "active");
 
         $this->member_roles = new MembersRolesModel();
 	}
@@ -60,7 +57,7 @@ class Members extends Model{
 
 			$row = mysqli_fetch_assoc($result);
 
-			$_SESSION['name_of_user']  = $row['fullname'] ." " . $row['familyname'];
+			$_SESSION['name_of_user']  = $row['name'] ." " . $row['familyname'];
 			$_SESSION['type_of_user'] = $row['type'];
 			$_SESSION['manager_of_user'] = $row['manager_id'];
 			$_SESSION['CID'] = $row['id'];
@@ -218,6 +215,7 @@ class Members extends Model{
     function checkUsername($username){
         $query = "SELECT COUNT(*) FROM `$this->tablename` WHERE `$this->tablename`.username = '$username'";
 
+        return $query;
         return $this->search($query, array('count'));
     }
 
@@ -234,6 +232,15 @@ class Members extends Model{
 		return $this->makeArray($this->getResultArray($query), $col);
 
 	}
+
+    function getUserByRoles($role){
+        $query = "SELECT `$this->tablename`.* FROM `tbl_members_roles`
+                JOIN `members` ON `tbl_members_roles`.member_id = `members`.id
+                JOIN `tbl_roles` ON `tbl_members_roles`.role_id = `tbl_roles`.id
+                where `tbl_roles`.title = '$role'  ";
+
+        return $this->search($query);
+    }
 
 	private function makeArray($array , $cols = null){
 		$cols = ($cols == null) ? $this->cols : $cols;

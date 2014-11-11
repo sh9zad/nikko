@@ -6,7 +6,7 @@
  * Time: 5:35 PM
  */
 
-$_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/base/model.class.php';
+include_once _PATH . 'base/model.class.php';
 
 class RightModel extends Model{
 

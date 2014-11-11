@@ -1,6 +1,6 @@
 <?php
 
-include_once 'include/db_connect.php';
+include_once _PATH.'include/db_connect.php';
 /**
  * Class DBManager.
  * Base class for all the database activities. All the model classes are extending from this class.
@@ -88,10 +88,10 @@ class DBManager{
      * @return bool|mysqliresult false for queries with errors and results for the correct queries.
      */
     function executeQuery($query){
-        //print_r($this->connection->connect_error);
+         //return ($this->connection->connect_error);
         $this->connectDB();
 		$result = $this->connection->query($query);
-        //print_r($this->connection);
+        //return ($this->connection);
 
 		if (!$result){
 			$this->dbErrorHandler("Could not execute query: ".$query."\r\n");

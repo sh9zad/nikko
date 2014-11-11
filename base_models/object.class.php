@@ -7,7 +7,7 @@
  */
 
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/localkeeper3g/base/model.class.php';
+include_once _PATH. 'base/model.class.php';
 
 class ObjectModel extends Model{
 
