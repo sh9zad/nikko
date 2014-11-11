@@ -1,0 +1,31 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: sh.hasanzadeh
+ * Date: 10/12/2014
+ * Time: 10:37 AM
+ */
+
+
+
+include $_SERVER['DOCUMENT_ROOT'] . '/vas/' . "include/constants.inc";
+include_once _PATH . "controls/inputcontrol.class.php";
+
+if (!isset($_SESSION)) {session_start();}
+
+$input_controller = new InputController();
+
+$input = "{get}" . http_build_query($_GET) . "{post}" . http_build_query($_POST);
+
+$sender = (isset($_GET['sender'])) ? $_GET['sender'] : $_POST['sender'];
+$scode = (isset($_GET['scode'])) ? $_GET['scode'] : $_POST['scode'];
+$text = (isset($_GET['text'])) ? $_GET['text'] : $_POST['text'];
+$is_test = (isset($_GET['test']) || isset($_POST['test'])) ? true : false;
+
+$result = $input_controller->insert_input(array(mysql_real_escape_string($input), mysql_real_escape_string($sender), mysql_real_escape_string($scode), mysql_real_escape_string($text)), $is_test);
+
+if ($result != 0){
+    $record = $input_controller->getrecord(array('id'=>$result));
+}
+else{
+}
