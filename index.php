@@ -17,6 +17,8 @@ require_once _PATH . "controls/servicecontrol.class.php";
 
 if (!isset($_SESSION)) {session_start();}
 
+/**/
+
 $members = new Members();
 $acl = new ACLController();
 $cat = new CategoriesController();
