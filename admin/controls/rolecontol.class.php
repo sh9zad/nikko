@@ -22,15 +22,14 @@ class RoleController extends AjaxController{
     private $right;
     private $object;
     private $permission;
-    private $tables_control;
+    private $db_controller;
 
     function RoleController(){
         $this->role = new RoleModel();
         $this->right = new RightModel();
         $this->object = new ObjectModel();
         $this->permission = new PermissionModel();
-
-        $this->tables_control = new DBController();
+        $this->db_controller = new DBController();
     }
 
     function getlist($arg){
@@ -38,7 +37,8 @@ class RoleController extends AjaxController{
     }
 
     function addrole($arg){
-        $this->reply($this->role->insert(array($arg['title'])));
+        $c_id = (isset($_SESSION['CID'])) ? $_SESSION['CID'] : null;
+        $this->reply($this->role->insert(array($arg['title'], $c_id)));
     }
 
     function deleterole($arg){
@@ -87,15 +87,6 @@ class RoleController extends AjaxController{
         $this->reply($result);
     }
 
-    function assigntablepermission($arg){
-        $result['role'] = $this->role->getList($arg['id']);
-        $result['tables'] = $this->tables_control->gettablenames(null, false);
-        $result['rights'] = $this->right->getList();
-        $result['assigned'] = $this->permission->getAssignedPermission($arg['id']);
-
-        $this->reply($result);
-    }
-
     function doassignperm($arg){
         $perm = $arg['perm'];
 
@@ -104,6 +95,31 @@ class RoleController extends AjaxController{
         }
 
 
-        $this->reply($this->permission->insertPermissions($arg['id'], $perm));
+        if (isset($arg['object_permission']) && $arg['object_permission'] == "1")
+            $this->reply($this->permission->insertPermissions($arg['id'], false, $perm));
+        elseif(isset($arg['object_permission']) && $arg['object_permission'] == "0") {
+            $this->reply($this->permission->insertPermissions($arg['id'], true, $perm, $arg['table_name']));
+        }
+    }
+
+    function assigntable($arg){
+        $result['role'] = $this->role->getList($arg['id'])[0];
+//        $result['objects'] = $this->object->getList();*/
+        $result['rights'] = $this->right->getList();
+        $result['assigned'] = $this->permission->getAssignedPermissionTable($arg['id'], $arg['table_name']);
+        $result['columns'] = $this->db_controller->getdetails($arg, true);
+
+        $this->reply($result);
+    }
+
+    function doassigntableperm($arg){
+        $result = false;
+
+        if (!isset($arg['id']))
+            $this->reply($result);
+
+        $role_id = $arg['id'];
+
+
     }
 }

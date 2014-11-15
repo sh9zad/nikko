@@ -32,9 +32,12 @@ class AjaxController{
     /**
      * This framework uses the JSON format for communicating with the client side codes.
      * This function gets the results and formats them into a JSON format.
-     * @param $data string of data or array of data to be converted.
+     * @param $data array The data or array of data to be converted.
      */
     function reply($data){
         print_r(json_encode($data, JSON_UNESCAPED_UNICODE));
+    }
+    function oneReply($variable){
+        return end(end($variable));
     }
 }

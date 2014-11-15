@@ -117,4 +117,28 @@ class ServiceController extends AjaxController{
 
         $this->reply($result);
     }
+
+    function isvalidservice($arg, $isAjax = true){
+        $result = $this->service_alias->getServiceID($arg['service']);
+
+        if (sizeof($result) > 0){
+            $result = $this->service_model->getList($result[0]['service_id']);
+            if (sizeof($result) > 0){
+                $result = $result[0];
+            }
+            else {
+                $result = false;
+            }
+        }
+        else {
+            $result = false;
+        }
+
+        if ($isAjax === true){
+            $this->reply($result);
+        }
+        else {
+            return $result;
+        }
+    }
 }

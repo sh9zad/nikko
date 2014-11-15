@@ -45,4 +45,12 @@ class TopicModel extends Model
         $query = "SELECT * FROM `$this->tablename` ORDER BY id DESC LIMIT 1;";
         return $this->search($query,array('id'));
     }
+    function getTopicBySearch($startS,$finishS,$startD,$finishD){
+        $query = "SELECT `topic`.* FROM `topic`
+                    WHERE (`topic`.topic_number BETWEEN '$startS' AND '$finishS')
+                    OR
+                          (`topic`.gen_date BETWEEN '$startD' AND '$finishD')
+        ";
+        return $this->search($query);
+    }
 }

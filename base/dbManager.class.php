@@ -127,4 +127,13 @@ class DBManager{
 
 		return $arr;
 	}
+
+    /**
+     * Return the error code of the mysqli connection.
+     * In case an error happens, for more information on the error this function will return the error code.
+     * @return number the number of the error happened to the mysqli connection.
+    */
+    function getMySQLErrorNo(){
+        return mysqli_errno($this->connection);
+    }
 }

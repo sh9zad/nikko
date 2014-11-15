@@ -7,14 +7,18 @@
  */
 
 include_once _PATH . 'base/model.class.php';
-include_once 'membersroles.class.php';
-include_once 'permission.class.php';
+include_once _PATH . 'base_models/membersroles.class.php';
+include_once _PATH . 'base_models/permission.class.php';
+include_once _PATH . 'base_controls/acl.class.php';
+
+if (!isset($_SESSION)) {session_start();}
 
 class RoleModel extends Model{
 
     private $m_r_tbl;
     private $memberRole;
     private $permission;
+    private $acl;
 
     function RoleModel(){
         parent::Model('tbl_roles');
@@ -24,17 +28,33 @@ class RoleModel extends Model{
         $this->permission = new PermissionModel();
 
         $this->schema = array(
-            "id" => "key",
-            "title" => "required"
+            "id" => "0",
+            "title" => "txt",
+            "creator_id" => "num"
         );
 
         $this->cols = array(
-            "id", "title"
+            "id", "title", "creator_id"
         );
 
         $this->labels = array(
             "ردیف", "عنوان"
             );
+    }
+
+    function getList(){
+        $query =  "SELECT id FROM `members` WHERE `type` = 0 AND `manager_id` = 0 AND `id` = " .$_SESSION['CID'];
+        $result = $this->search($query, array('id'));
+
+
+        if($result != false && sizeof($result) > 0){
+            return parent::getList();
+        }
+        else {
+            $query = "SELECT * FROM `$this->tablename` WHERE `creator_id` NOT IN (SELECT id FROM `members` WHERE `type` = 0 AND `manager_id` = 0)";
+
+            return $this->search($query);
+        }
     }
 
     function getRoles($user_id){
@@ -54,7 +74,7 @@ class RoleModel extends Model{
             return $this->deleteRoles($user_id);
 
             if ($result != false)
-                $result = $this->memberRole->insert(array($user_id, $roles));
+                $result = $this->memberRole->insert(array($user_id, $roles, $_SESSION['CID']));
         }
         elseif (is_array($roles) && sizeof($roles) > 0){
 

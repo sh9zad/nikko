@@ -41,6 +41,14 @@ class InputController extends Controller{
     }
 
     function getrecord($arg){
-        return $this->input_model->getList($arg['id']);
+        $result = $this->input_model->getList($arg['id']);
+
+        if(sizeof($result) == 1){
+            $result = $result[0];
+        }
+        else {
+            $result = false;
+        }
+        return $result;
     }
 }

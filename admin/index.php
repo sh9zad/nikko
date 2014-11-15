@@ -5,7 +5,8 @@
  * Date: 5/24/14
  * Time: 4:36 PM
 */
-include $_SERVER['DOCUMENT_ROOT'] . '/nikko/' . "include/constants.inc";
+include __DIR__ . "/include/settings.inc";
+include __DIR__ . "/include/constants.inc";
 
 
 require_once _PATH . "admin/controls/maincontrol.class.php";
@@ -17,6 +18,8 @@ require_once _PATH . "admin/controls/objectcontrol.class.php";
 require_once _PATH . "admin/controls/rolecontol.class.php";
 require_once _PATH . "admin/controls/rightcontrol.class.php";
 require_once _PATH . "admin/controls/usercontrol.class.php";
+
+require_once _PATH . "controls/servicecontrol.class.php";
 
 if (!isset($_SESSION)) {session_start();}
 
@@ -48,6 +51,7 @@ $object = new ObjectController();
 $role = new RoleController();
 $right = new RightController();
 $user = new UserController();
+$service = new ServiceController();
 $db = new DBController();
 
 //$city = new CityProvinceController();
@@ -75,6 +79,9 @@ switch($control){
         break;
     case "city":
         $city->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
+        break;
+    case "service":
+        $service->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
         break;
     case "db":
         $db->run($action, (isset($_POST['action'])) ? $_POST : $_GET);

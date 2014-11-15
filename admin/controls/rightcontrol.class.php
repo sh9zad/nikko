@@ -9,8 +9,6 @@
 require_once _PATH . 'base/ajaxcontroller.php';
 require_once _PATH . 'base_models/right.class.php';
 
-if (!isset($_SESSION)) {session_start();}
-
 class RightController extends AjaxController{
 
     private $right;

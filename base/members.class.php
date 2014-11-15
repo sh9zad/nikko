@@ -1,9 +1,7 @@
 <?php
 
 
-//require _PATH . 'include/db_connect.php';
 require_once 'model.class.php';
-//include_once $_SERVER['DOCUMENT_ROOT'] . '/localkeeper3g/base_models/membersroles.class.php';
 
 class Members extends Model{
 

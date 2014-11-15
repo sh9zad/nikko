@@ -17,10 +17,10 @@ class Model extends DBManager {
 	var $cols; /**< Array holding the column names of the table. The actual column names should be used.*/
 	var $labels; /**< Array relative to the cols variable. Could be used to automatically print the labels. */
     var $ids; /**< Array holding identifier names for the columns of the model. This will be set and used for auto from generation. */
-
+    var $control;
     /**
      * Default constructor of the class. The table name should be provided for the methods to perform properly.
-     * @param $tablename The name of the table that the child model class is managing.
+     * @param $tablename String, The name of the table that the child model class is managing.
      */
     function Model($tablename){
         $this->tablename = $tablename;
@@ -42,13 +42,12 @@ class Model extends DBManager {
 
     /**
      * insert the data into the table. Based on the $cols variable the $arg should be entered to the function.
-     * @param $arg array of data to be inserted to the table. Each row should be inserted separately.
+     * @param $arg array the array of data to be inserted to the table. Each row should be inserted separately.
      * @return bool|integer false if insert is not successful otherwise the ID number on the inserted row.
      */
     function insert($arg){
 		$query = "INSERT INTO `$this->tablename` (";
 		foreach ($this->cols as  $key => $value){
-
 			if ($key != 'id')
 				$query .= "`".$value."`,";
 		}
@@ -90,8 +89,8 @@ class Model extends DBManager {
 
     /**
      * The update function for the table data.
-     * @param $arg array of new data to be updated in the table. All the table columns should be added.
-     * @param $id Int of id number of the row to be changed.
+     * @param $arg array List of new data to be updated in the table. All the table columns should be added.
+     * @param $id number The id number of the row to be changed.
      * @return bool|mysqliresult false if update is not successful else the mysqliresult.
      */
     function update($arg, $id){
@@ -127,7 +126,7 @@ class Model extends DBManager {
     /**
      * A general function for executing any query required. Usually used for JOIN selects and complex queries.
      * The function will return an associative array as a result. The columns will either be selected from the $cols variable or the user entered data.
-     * @param $query The SQL query that has to be executed.
+     * @param $query string The SQL query that has to be executed.
      * @param null $res_cols If no value is provided the function uses the $cols variable for the associative array of the return value.
      * @return array An associative array containing the result fo the query.
      * @see makeArrayDB
@@ -163,12 +162,12 @@ class Model extends DBManager {
      * Best used for preparing the result of queries for the Ajax and JSON return values.
      * @param $array The regular array which we want to change to associative.
      * @param null $cols If provided the result will be based on the names of this variable otherwise the default class $cols variable will be used.
-     * @return array An associative array created wi the data provided or false on error.
+     * @return array An associative array created wi the data provided.
      */
     protected function makeArrayDB($array, $cols = null){
 		$c = ($cols == null) ? $this->cols : $cols;
 	
-		if ($c == null || sizeof($c) < 1) return false;
+		if ($c == null || sizeof($c) < 1) return;
 	
 		$result = array();
 	
@@ -181,7 +180,6 @@ class Model extends DBManager {
 				$result[] = $tmp;
 			}
 		}
-
 		return $result;
 	}
 
@@ -190,7 +188,13 @@ class Model extends DBManager {
         $result['labels'] = $this->labels;
         $result['schema'] = $this->schema;
         $result['ids'] = $this->ids;
-
+        $result['control'] = $this->control;
+        return $result;
+    }
+    function getTableInfoShow($schema,$labels,$cols){
+        $result['labels'] = $labels;
+        $result['schema'] = $schema;
+        $result['cols'] = $cols;
         return $result;
     }
 }

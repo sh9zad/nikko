@@ -16,7 +16,7 @@ if (!$_SESSION['member']->CheckLogin())
         <h1>Tables</h1>
         <div class="row">
             <div class="col-lg-12">
-                <label> Display Tables' Data:</label>
+                <label> List of Database Tables:</label>
                 <div class="table-responsive overflow">
                     <table class="table table-bordered table-hover table-striped tablesorter" id="tbl-tables-list">
                         <thead>
@@ -29,11 +29,11 @@ if (!$_SESSION['member']->CheckLogin())
                 </div>
             </div>
         </div>
-        <div id="details-table-section" class="col-lg-6 absoluteBox" style="display: none;">
+        <div id="details-table-section" class="col-lg-11 hidden">
             <div class="panel panel-primary fixedBox">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Table Details
-                        <button type="button" class="close" onclick="return boxClose()">×</button>
+                        <button type="button" class="close" onclick="return Close('details-table-section')">×</button>
                     </h3>
                 </div>
                 <input type="hidden" id="edit-object-id">

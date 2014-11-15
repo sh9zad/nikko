@@ -15,6 +15,8 @@ $(document).ready( function(){
 $("#btn-add-role").on('click', function(){
     var post = "control=role&action=addrole&title="+$("#txt-new-role").val();
 
+    //alert(post);
+
     ajaxCall(post, url, shownotification('Wait'), addNewRoleSuccess, removenotification);
 });
 $("#btn-edit-role").on('click', function(){
@@ -32,7 +34,22 @@ $("#btn-assign-permission-role").on('click', function(){
 
     sThisVal = (sThisVal.length > 0) ? sThisVal : 'false';
 
-    var post = "control=role&action=doassignperm&id="+ $('#assign-permission-role-id').val();
+    var post = "control=role&action=doassignperm&id="+ $('#assign-permission-role-id').val()+"&object_permission=1";
+    post += "&perm=" + sThisVal;
+
+    //alert(post);
+
+    ajaxCall(post, url, shownotification('Wait'), assignPermissionSuccess, removenotification);
+});
+$("#btn-assign-table-permission-role").on('click', function(){
+    var sThisVal =[];
+    $('input:checkbox.tbl-permission:checked').each(function () {
+        sThisVal.push(this.checked ? $(this).val() : "");
+    });
+
+    sThisVal = (sThisVal.length > 0) ? sThisVal : 'false';
+
+    var post = "control=role&action=doassignperm&object_permission=0&table_name="+$("#lst-table-names").val()+"&id="+ $('#assign-table-permission-role-id').val();
     post += "&perm=" + sThisVal;
 
     //alert(post);
@@ -40,11 +57,11 @@ $("#btn-assign-permission-role").on('click', function(){
     ajaxCall(post, url, shownotification('Wait'), assignPermissionSuccess, removenotification);
 });
 $("#btn-show-table-columns").on('click', function(){
-    var post = "control=role&action=assigntablepermission&table_name="+$("#lst-table-names").val()+"&id="+$('#assign-permission-role-id').val();
+    var post = "control=role&action=assigntable&id="+ $('#assign-permission-role-id').val()+"&table_name="+$("#lst-table-names").val();
 
-    alert(post);
+    //alert(post);
 
-    //ajaxCall(post, url, shownotification('wait'), showTableDetailsSuccess, removenotification());
+    ajaxCall(post, url, shownotification('wait'), showAssignTableSuccess, removenotification());
 });
 
 /* Operational Functions */
@@ -85,7 +102,55 @@ function assignRoleTablePermissions(id){
 }
 
 /* Ajax Success Functions*/
+function showAssignTableSuccess(data){
+    //alert(data);
+    data = JSON.parse(data);
 
+    var role = data['role'];
+    var rights = data['rights'];
+    var assigned = data['assigned'];
+    var columns = data['columns'];
+
+    $("#assign-table-permission-role-title").val(role['title']);
+    $("#assign-table-permission-role-id").val(role['id']);
+
+
+    $('#tbl-assign-table-permission-role > tbody').html('');
+    $.each(columns, function(i,v){
+        var row = "<tr id='row_"+i+"'>";
+        row += "<td>"+i+"</td>";
+        row += "<td>"+v+"</td>";
+
+        for (i=0; i<rights.length; i++){
+            var isAssigned = false;
+            $.each(assigned, function(ii,vv){
+                //alert(vv['id']);
+                if (vv['column_name'] == v && vv['right_id'] == rights[i]['id']){
+                    //alert(vv['id']);
+                    isAssigned = true;
+                }
+            });
+
+            if (isAssigned){
+                row += "<td><input class='tbl-permission' checked type='checkbox' id='chk_"+rights[i]['id']+"' value='"+v+"-"+rights[i]['id']+"'></td>"
+            }
+            else {
+                row += "<td><input class='tbl-permission' type='checkbox' id='chk_"+rights[i]['id']+"' value='"+v+"-"+rights[i]['id']+"'></td>"
+            }
+
+        }
+        row += "</tr>";
+        $('#tbl-assign-table-permission-role > tbody').append(row);
+    });
+
+    $('#tbl-assign-table-permission-role > thead').html('');
+    var row = "<tr><td>id</td><td>Column</td>";
+    $.each(rights, function(i,v){
+        row += "<td>"+v['title']+"</td>";
+    });
+    row += "</tr>";
+    $('#tbl-assign-table-permission-role > thead:first').append(row);
+}
 
 function showAssignTablePermissionSuccess(data){
     data = JSON.parse(data);
@@ -99,6 +164,7 @@ function showAssignTablePermissionSuccess(data){
 }
 
 function assignPermissionSuccess(data){
+    //alert(data);
     data = JSON.parse(data);
 
     if (data != false && data != 'false'){
@@ -109,6 +175,9 @@ function assignPermissionSuccess(data){
         alert("Permissions assigned successfully.");
 
         $("#assign-permission-role").fadeOut();
+    }
+    else {
+        alert('Error in inserting the permission.');
     }
 }
 

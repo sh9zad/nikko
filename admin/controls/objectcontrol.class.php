@@ -24,7 +24,8 @@ class ObjectController extends AjaxController{
     }
 
     function addobject($arg){
-        return $this->reply($this->object->insert(array($arg['title'])));
+        $c_id = (isset($_SESSION['CID'])) ? $_SESSION['CID'] : null;
+        return $this->reply($this->object->insert(array(strtolower($arg['title']), $c_id)));
     }
 
     function deleteobject($arg){

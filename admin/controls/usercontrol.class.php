@@ -6,9 +6,11 @@
  * Time: 1:22 PM
  */
 
-require_once _PATH.'/base/ajaxcontroller.php';
-require_once _PATH.'base/members.class.php';
-include_once _PATH.'base_models/object.class.php';
+require_once _PATH . '/base/ajaxcontroller.php';
+require_once _PATH . 'base/members.class.php';
+include_once _PATH . 'base_models/object.class.php';
+include_once _PATH . 'base_models/membertypes.class.php';
+include_once _PATH . 'base_controls/acl.class.php';
 
 
 if (!isset($_SESSION)) {session_start();}
@@ -17,14 +19,21 @@ class UserController extends AjaxController{
 
     private $members;
     private $object;
+    private $member_types;
+    private $acl;
 
     function UserController(){
         $this->members = (isset($_SESSION['member'])) ? $_SESSION['member'] : new Members();
         $this->object = new ObjectModel();
+        $this->member_types = new MemberTypeModel();
+        $this->acl = new ACLController();
     }
 
     function getlist($arg){
-        $this->reply($this->members->getAllUsers());
+        $result = array();
+        $result['users'] = $this->members->getAllUsers();
+        $result['types'] = $this->member_types->getList();
+        $this->reply($result);
     }
 
     function deleteuser($arg){
@@ -32,7 +41,7 @@ class UserController extends AjaxController{
     }
 
     function adduser($arg){
-        if ($_SESSION['CID'] == 1 || $_SESSION['ACL']->checkPermission($_SESSION['CID'], 'user', 'full|add')){
+        if ($this->acl->isSuperAdmin($_SESSION['CID']) || $this->acl->checkPermission($_SESSION['CID'], 'user', 'full|add')){
             $duplicate = $this->members->checkUsername($arg['username']);
             //echo($duplicate);
             $result = array();
@@ -49,7 +58,8 @@ class UserController extends AjaxController{
                 $result['suggestion'] = $suggestion;
             }
             else {
-                $data = array($arg['name'], $arg['family'], $arg['username'], md5($arg['pass']), 1, 1,$arg['email'], 1);
+                $type = (isset($arg['type'])) ? $arg['type'] : 2;
+                $data = array($arg['name'], $arg['family'], $arg['username'], md5($arg['pass']), $type, 1,$arg['email'], 1);
                 $result['success'] = 1;
                 $result['id'] = $this->members->insert($data);
             }

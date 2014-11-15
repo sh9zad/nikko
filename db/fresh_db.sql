@@ -97,7 +97,12 @@ CREATE TABLE IF NOT EXISTS `tbl_rights` (
   `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
+INSERT INTO `tbl_rights` (`id`, `title`) VALUES
+(1, 'full'),
+(2, 'view'),
+(3, 'add'),
+(4, 'delete'),
+(5, 'update');
 -- --------------------------------------------------------
 
 --

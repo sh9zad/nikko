@@ -204,28 +204,7 @@ input[type="text"]:focus{
     display: block;
     text-align: center;
 }
-/*********** Shervin CSS **************/
-.operations{
-    display: block;
-    position: absolute;
-    padding: 5px;
-    top: 10%;
-    left: 15%;
-    width: 150px;
-    background-color: #afd9ee;
-    border: 1px solid #000044;
-}
 
-.add-division-section{
-    display: block;
-    position: absolute;
-    padding: 5px;
-    top: 15%;
-    left: 15%;
-    width: 250px;
-    background-color: #afd9ee;
-    border: 1px solid #000044;
-}
 
 
 

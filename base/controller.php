@@ -60,7 +60,7 @@ class Controller {
     /**
      * Loading the view after the logics are taken care of.
      * Please make sure that the view files are properly named and the names are properly called here.
-     * @param $viewname name of the view to be displayed.
+     * @param $viewname string Name of the view to be displayed.
      * @param null $data The data that the view requires for displaying.
      */
     protected function _load_view($viewname,$data=null){
@@ -79,6 +79,7 @@ class Controller {
     protected function home(){
         $this->_load_view('home');
     }
+
     protected function uploadimage(){
         $this->_load_view('uploadimage');
     }

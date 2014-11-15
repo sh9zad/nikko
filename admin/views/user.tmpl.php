@@ -30,6 +30,8 @@ if (!$_SESSION['member']->CheckLogin())
                     <div class="form-group"><input type="text" name="pass" id="txt-new-user-password" class="form-control" placeholder="Enter Password" /></div>
 
                     <div class="form-group"><input type="text" name="email" id="txt-new-user-email" class="form-control" placeholder="Enter Email"/></div>
+
+                    <div class="form-group"><select type="text" name="type" id="txt-new-user-type" class="form-control" ></select></div>
                     <div class="form-group"><input type="button" class="btn btn-success" name="btn" id="add-new-user" value="Add New User "></div>
                 </div>
             </form>
@@ -73,7 +75,7 @@ if (!$_SESSION['member']->CheckLogin())
                     </div>
                 </div>
             </div>
-            <div id="assign-role-section" class="col-lg-6 absoluteBox" style="display: none;">
+            <div id="assign-role-section" class="hide col-lg-6 absoluteBox">
                 <div class="panel panel-primary fixedBox">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Assign Roles

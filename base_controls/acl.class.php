@@ -11,6 +11,7 @@ require_once _PATH.'base_models/object.class.php';
 require_once _PATH.'base_models/permission.class.php';
 require_once _PATH.'base_models/right.class.php';
 require_once _PATH.'base_models/role.class.php';
+require_once _PATH . 'base/members.class.php';
 
 class ACLController extends Controller{
 
@@ -20,12 +21,14 @@ class ACLController extends Controller{
     private $roleModel;
     private $user_id;
     private $roles;
+    private $members;
 
     function ACLController($user_id = null){
         $this->objectModel = new ObjectModel();
         $this->permissionModel = new PermissionModel();
         $this->rightModel = new RightModel();
         $this->roleModel = new RoleModel();
+        $this->members = new Members();
 
         if ($user_id != null){
             $this->user_id = $user_id;
@@ -49,20 +52,41 @@ class ACLController extends Controller{
         $result = false;
         if ($user_id == 1)
             return true;
-        $roles = $this->roleModel->getRoles($user_id);
 
-        if (!is_array($roles)){
-            $result = false;
-            return $result;
+        $user = $this->members->getList($user_id);
+
+        if ($user != false && sizeof($user) > 0){
+            $user = $user[0];
+
+            if($user['type'] == 1)
+                return true;
+            else
+                return false;
         }
-
-        foreach($roles as $role){
-            if ($role['id'] == "1")
-                //echo ('hi');
-                $result = true;
+        else{
+            return false;
         }
 
         return $result;
+    }
+
+    function isSuperAdmin($user_id){
+        if ($user_id == 1)
+            return true;
+
+        $user = $this->members->getList($user_id);
+
+        if ($user != false && sizeof($user) > 0){
+            $user = $user[0];
+
+            if($user['type'] == 0 && $user['manager_id'] == 0)
+                return true;
+            else
+                return false;
+        }
+        else{
+            return false;
+        }
     }
 
     function checkRole($role_name){
@@ -84,7 +108,6 @@ class ACLController extends Controller{
         $right = explode('|', $right);
 
         $result = $this->permissionModel->checkPermission($user_id, $object, $right);
-
         //return $result;
 
         return ($result['count'] > 0) ? true : false;

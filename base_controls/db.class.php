@@ -50,7 +50,11 @@ class DBController extends AjaxController{
             return $this->table_names;
     }
 
-    function getdetails($arg){
-        $this->reply($this->tables[$arg['table_name']]->getColumnNames());
+    function getdetails($arg, $is_ajax = false){
+        $result = $this->tables[$arg['table_name']]->getColumnNames();
+        if ($is_ajax === false)
+            $this->reply($result);
+        else
+            return $result;
     }
 }

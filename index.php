@@ -5,19 +5,23 @@
  * Date: 5/24/14
  * Time: 4:36 PM
  */
-include $_SERVER['DOCUMENT_ROOT'] . '/nikko/' . "include/constants.inc";
+include __DIR__ . "/include/settings.inc";
+include __DIR__ . "/include/constants.inc";
 
-require_once  _PATH . "controls/maincontrol.class.php";
-require_once  _PATH . "base/members.class.php";
+require_once _PATH . "controls/maincontrol.class.php";
+require_once _PATH . "base/members.class.php";
 require_once _PATH . "base_controls/acl.class.php";
-
-require_once _PATH . "controls/organizationcontrol.class.php";
-
+require_once _PATH  . "controls/categoriescontrol.class.php";
+require_once _PATH  . "controls/topiccontrol.class.php";
+require_once _PATH . "controls/servicecontrol.class.php";
 
 if (!isset($_SESSION)) {session_start();}
 
 $members = new Members();
 $acl = new ACLController();
+$cat = new CategoriesController();
+$topic = new TopicController();
+$service = new ServiceController();
 
 $_SESSION['member'] = $members;
 $_SESSION['ACL'] = $acl;
@@ -46,7 +50,6 @@ if (isset($_POST['action'])) {
 }
 
 $main = new MainController();
-$organization = new OrganizationController();
 
 switch($control){
     case "members":
@@ -55,11 +58,19 @@ switch($control){
     case "main":
         $main->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
         break;
-    case "organization":
-        $organization->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
+    case "cat":
+        $cat->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
+        break;
+    case "topic":
+        $topic->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
+        break;
+    case "service":
+        $service->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
         break;
     default:
-        $_POST['Error'] = "Controller Not Found. <br>";
-        print_r($_POST);
+        $_POST['Error'] = "<h1>NIKKO Framework</h1><br>
+                            <h2>Error: <br></h2>
+                            Controller Not Found: <strong>$control</strong> <br>";
+        echo $_POST['Error'];
         break;
     }

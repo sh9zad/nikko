@@ -1,5 +1,5 @@
 /**
- * Created by sh.hasanzadeh on 8/23/14.s
+ * Created by sh.hasanzadeh on 8/23/14.
  */
 
 class FormGenerator{
@@ -106,8 +106,6 @@ class FormGenerator{
         });
         output += "</thead>";
         output += "<tbody>";
-        var element;
-        var modal;
         for(var i = 0; i < this.data.length; i++){
             output += "<tr>";
             this.schema.forEach((item, index) => {
@@ -116,31 +114,8 @@ class FormGenerator{
                 }
                 else if(item.substr(0, 4) == 'link'){
                     var attr = item.split('|');
-                    if(attr[1] == 'Delete'){
-                        element = '<button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>';
-                        modal = '';
-                    }
-                    else if(attr[1] == 'Details'){
-                        element = '<button class="btn btn-default btn-xs"><i class="fa fa-exclamation-circle"></i></button>';
-                        modal = 'href="index.htm#myModal-2" data-toggle="modal"';
-                    }
-                    else if(attr[1]  == 'Download') {
-                        element = '<button class="btn btn-info btn-xs"><i class="fa fa-cloud-download"></i></button>';
-                        modal = '';
-                    }
-                    else if(attr[1] == 'Email'){
-                        element = '<button class="btn btn-success btn-xs"><i class="fa fa-envelope-o"></i></button>';
-                        modal = 'href="index.htm#myModal-1" data-toggle="modal"';
-                    }
-                    else if(attr[1] == 'Edit'){
-                        element = '<button class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></button>';
-                        modal = '';
-                    }
-                    else{
-                        element = attr[1];
-                        modal = '';
-                    }
-                    output += "<td><a "+modal+" onclick='return " + attr[2] + "(" + this.data[i]['id'] + "); ' >" + element + "</a></td>";
+
+                    output += "<td><a href='#' onclick='return "+attr[2]+"("+this.data[i]['id']+"); ' >"+attr[1]+"</a></td>";
                 }
             });
             output += "</tr>";

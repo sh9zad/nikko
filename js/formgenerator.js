@@ -1,6 +1,6 @@
 /**
- * Created by sh.hasanzadeh on 8/23/14.s
- */
+* Created by sh.hasanzadeh on 8/23/14.
+*/
 var FormGenerator = (function () {
     function FormGenerator(schema, labels, ids) {
         this.schema = schema;
@@ -62,7 +62,7 @@ var FormGenerator = (function () {
         //console.log(this.schema);
         var output;
 
-        output = "<!--ul-->";
+        output = "<ul>";
         var count = 0;
         this.schema.forEach(function (item) {
             if (item == '0') {
@@ -100,7 +100,7 @@ var FormGenerator = (function () {
             count++;
         });
 
-        output += "<!--/ul-->";
+        output += "</ul>";
         return output;
     };
 
@@ -120,8 +120,6 @@ var FormGenerator = (function () {
         });
         output += "</thead>";
         output += "<tbody>";
-        var element;
-        var modal;
         for (var i = 0; i < this.data.length; i++) {
             output += "<tr>";
             this.schema.forEach(function (item, index) {
@@ -129,31 +127,8 @@ var FormGenerator = (function () {
                     output += "<td>" + _this.data[i][_this.cols[index]] + "</td>";
                 } else if (item.substr(0, 4) == 'link') {
                     var attr = item.split('|');
-                    if(attr[1] == 'Delete'){
-                        element = '<button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>';
-                        modal = '';
-                    }
-                    else if(attr[1] == 'Details'){
-                        element = '<button class="btn btn-default btn-xs"><i class="fa fa-exclamation-circle"></i></button>';
-                        modal = 'href="index.htm#myModal-2" data-toggle="modal"';
-                    }
-                    else if(attr[1]  == 'Download') {
-                        element = '<button class="btn btn-info btn-xs"><i class="fa fa-cloud-download"></i></button>';
-                        modal = '';
-                    }
-                    else if(attr[1] == 'Email'){
-                        element = '<button class="btn btn-success btn-xs"><i class="fa fa-envelope-o"></i></button>';
-                        modal = 'href="index.htm#myModal-1" data-toggle="modal"';
-                    }
-                    else if(attr[1] == 'Edit'){
-                        element = '<button class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></button>';
-                        modal = '';
-                    }
-                    else{
-                        element = attr[1];
-                        modal = '';
-                    }
-                    output += "<td><a "+modal+" onclick='return " + attr[2] + "(" + _this.data[i]['id'] + "); ' >" + element + "</a></td>";
+
+                    output += "<td><a href='#' onclick='return " + attr[2] + "(" + _this.data[i]['id'] + "); ' >" + attr[1] + "</a></td>";
                 }
             });
             output += "</tr>";
@@ -167,11 +142,11 @@ var FormGenerator = (function () {
         var input = "";
         var attr = date_schema.split("|");
 
-        input += "<div class='col-lg-3'><label>"+ date_label +"</label><div class='form-group'>";
-        input += "<input class='form-control' type='text' id='" + date_id + "' ";
+        input += "<li>" + date_label + "</li>";
+        input += "<li><input type='text' id='" + date_id + "' ";
         if (data)
             input += "value='" + data + "' ";
-        input += "></div></div>";
+        input += "></li>";
         input += "<script>$(function(){ $(\"#" + date_id + "\").datepicker({dateFormat:'yy/mm/dd'}).datepicker('setDate',new Date());});</script>";
 
         return input;
@@ -180,12 +155,12 @@ var FormGenerator = (function () {
     FormGenerator.prototype.createTextAreaLI = function (txt_schema, txt_id, txt_label, data) {
         var input = "";
         var attr = txt_schema.split('|');
-        input += "<div class='col-lg-6'><div class='form-group textareaHeight'><label>" + txt_label + "</label>";
-        input += "<textarea class='form-control' id='" + txt_id + "' rows='" + attr[1] + "' cols='" + attr[2] + "' >";
+        input += "<li>" + txt_label + "</li>";
+        input += "<li><textarea id='" + txt_id + "' rows='" + attr[1] + "' cols='" + attr[2] + "' >";
         if (data)
             input += data;
         input += "</textarea>";
-        input += "</div></div>";
+        input += "</li>";
 
         return input;
     };
@@ -197,7 +172,7 @@ var FormGenerator = (function () {
         var isMultiLine;
         isMultiLine = 0;
 
-        input += "<div class='col-lg-3'><label>"+ txt_label +"</label><div class='form-group'>";
+        input += "<li>" + txt_label + "</li>";
         if (txt_schema.substr(0, 3) == 'txt') {
             type = "text";
         } else if (txt_schema.substr(0, 3) == 'num') {
@@ -205,20 +180,20 @@ var FormGenerator = (function () {
         }
 
         //alert(txt_schema);
-        input += "<input class='form-control' type='" + type + "' ";
+        input += "<li><input type='" + type + "' ";
 
         input += " id='" + txt_id + "' ";
         input += (data) ? "value='" + data + "'" : "";
-        input += "></div></div>";
+        input += "></li>";
         return input;
     };
 
     FormGenerator.prototype.createSelectLI = function (select_schema, select_id, select_label, data) {
-        var input = "<div class='col-lg-3'><label>"+ select_label +"</label><div class='form-group'>";
+        var input = "<li>" + select_label + "</li>";
 
         var attr = select_schema.split('|');
 
-        input += "<select class='form-control' id='" + select_id + "' >";
+        input += "<ul><li><select id='" + select_id + "' >";
         this.select_data[attr[1]].forEach(function (item) {
             input += "<option value='" + item['id'] + "'";
             if (data && data == item['id']) {
@@ -234,7 +209,7 @@ var FormGenerator = (function () {
             });
             "</option>";
         });
-        input += "</select></div></div>";
+        input += "</select></li></ul>";
 
         return input;
     };
@@ -243,7 +218,7 @@ var FormGenerator = (function () {
         var _this = this;
         var input = "";
         if (chbx_schema.length > 4 && chbx_schema.substr(0, 5) == 'chbx|') {
-            input += "<div class='col-lg-3 marginbtm'><div class='btn-group'><button data-toggle='dropdown' class='btn btn-white fontsmall' type='button'>" + chbx_label + "<button data-toggle='dropdown' class='btn btn-white dropdown-toggle fontsmall' type='button'><span class='caret'></span></button></button><ul role='menu' class='dropdown-menu'>";
+            input += "<li>" + chbx_label + "</li><ul>";
             var attr;
             attr = chbx_schema.split("|");
 
@@ -251,7 +226,7 @@ var FormGenerator = (function () {
                 var count;
                 count = 0;
                 this.chbx_data[attr[1]].forEach(function (item, index) {
-                    input += "<li><a href='#'><label><input type='checkbox' value='" + item['id'] + "' ";
+                    input += "<li><input type='checkbox' value='" + item['id'] + "' ";
                     if (column) {
                         var col;
                         col = column.split('|');
@@ -263,14 +238,14 @@ var FormGenerator = (function () {
                             });
                         }
                     }
-                    input += " class='" + chbx_id + "' id='" + chbx_id + index + "'>" + item[attr[2]] + "</label></a>";
+                    input += " class='" + chbx_id + "' id='" + chbx_id + index + "'>" + item[attr[2]] + "</li>";
                 });
                 count++;
             }
 
-            input += "</li></ul></div></div>";
+            input += "</ul>";
         } else if (chbx_schema.length == 4) {
-            input += "<label><input type='checkbox' id='" + chbx_id + "'>" + chbx_label + "</label>";
+            input += "<li><input type='checkbox' id='" + chbx_id + "'>" + chbx_label + "</li>";
         }
 
         return input;

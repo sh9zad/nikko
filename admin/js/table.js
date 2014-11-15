@@ -10,6 +10,13 @@ $(document).ready(function(){
 
     ajaxCall(post, url, shownotification('wait'), showTablesSuccess, removenotification);
 });
+/* General */
+function Close(box){
+
+    $("#"+box).fadeOut();
+    //$("#"+box).addClass('hidden');
+}
+
 /* Operational Functions */
 function showTableDetails(table_name){
     var post = "control=db&action=getdetails&table_name="+table_name;
@@ -21,6 +28,7 @@ function showTableDetails(table_name){
 
 /* AJAX Success Functions */
 function showTableDetailsSuccess(data){
+    //alert('hi');
     data = JSON.parse(data);
 
     $("#tbl-table-columns > tbody").html('');
@@ -31,9 +39,9 @@ function showTableDetailsSuccess(data){
         $("#tbl-table-columns > tbody").append(row);
     });
 
+    $("#details-table-section").removeClass('hidden');
     $("#details-table-section").fadeIn();
 }
-
 
 function showTablesSuccess(data){
     data = JSON.parse(data);

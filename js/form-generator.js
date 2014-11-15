@@ -63,6 +63,75 @@ function formGenerator(){
 
         return output;
     };
+    this.generateTableDataShow = function(cols,label,data){
+        var output = "<thead><tr>";
+        output += "<th>#</th>";
+        $.each(cols, function(i,v){
+            if (label[i] == '0' || label[i] == 0)
+                return;
+            output += "<th>"+label[i]+"</th>";
+        });
+        output += "</tr>";
+        output += "<tbody><tr>";
+        $.each(data, function(i,v){
+            output += "<tr>";
+            output += "<td>"+i+"</td>";
+            $.each(cols, function(ii,vv){
+                if (label[ii] == '0' || label[ii] == 0)
+                    return;
+                var d = (v != null && v[vv] != null ) ? v[vv] : null;
+                //var id = (ids != null && ids[ii] != null && ids[ii] != '0') ? ids[ii]+"-"+i : null;
+
+                output += "<td>"+ d;
+                if (fnc.length > 1){
+                    //output += data['id'] + ");'>Edit</a>";
+                }
+                output += "</td>";
+            });
+        });
+        output += "</tr></tbody>";
+
+        return output;
+    };
+    this.generateTableData = function(cols, schema,label, ids, control ,data){
+        var did = "";
+        var output = "<thead><tr>";
+        output += "<th>#</th>";
+        $.each(cols, function(i,v){
+            if (label[i] == '0' || label[i] == 0)
+                return;
+            output += "<th>"+label[i]+"</th>";
+        });
+        output += "<th>Actions</th>";
+        output += "</tr></thead>";
+        output += "<tbody>";
+        $.each(data, function(i,v){
+            output += "<tr>";
+            output += "<td>"+i+"</td>";
+            $.each(cols, function(ii,vv){
+                if (label[ii] == '0' || label[ii] == 0)
+                    return;
+                var d = (v != null && v[vv] != null ) ? v[vv] : null;
+                var id = (ids != null && ids[ii] != null && ids[ii] != '0') ? ids[ii]+"-"+i : null;
+
+                output += "<td>"+ d;
+                if (fnc.length > 1){
+                    //output += data['id'] + ");'>Edit</a>";
+                }
+                output += "</td>";
+            });
+            did = v['id'];
+            output += '<span class="button-group"><td><a class="button icon edit" onclick="editItem('+did+',\''+control+'\')">ویرایش</a>';
+            output += '<a class="button icon remove danger" onclick="deleteItem('+did+',\''+control+'\')">حذف</a>';
+            if(control == 'topic'){
+                output += '<a class="button icon remove mail" onclick="sendTopic('+did+',\''+control+'\')">ارسال</a>';
+            }
+            output += "</td></span></tr>";
+        });
+        output += "</tbody>";
+
+        return output;
+    };
 
     this.generateULFrom = function(cols, schema, label, ids, data, selects){
         //alert(data);

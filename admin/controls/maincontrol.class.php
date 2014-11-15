@@ -9,6 +9,7 @@
 //require_once "../include/constants.inc";
 require_once _PATH . "base/controller.php";
 require_once _PATH . "base/members.class.php";
+require_once _PATH . "base_controls/acl.class.php";
 
 
 if (!isset($_SESSION)) {session_start();}
@@ -16,10 +17,11 @@ if (!isset($_SESSION)) {session_start();}
 class MainController extends Controller{
 
     private $members;
-
+    private $acl;
 
     function MainController(){
         parent::Controller();
+        $this->acl = new ACLController();
     }
 
     function notadmin(){
@@ -54,26 +56,51 @@ class MainController extends Controller{
     }
 
     function user(){
-        $this->_load_view('user');
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('user');
+        else
+            $this->notadmin();
     }
 
     function object(){
-        $this->_load_view('object');
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('object');
+        else
+            $this->notadmin();
     }
 
     function role(){
-        $this->_load_view('role');
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('role');
+        else
+            $this->notadmin();
     }
 
     function right(){
-        $this->_load_view('right');
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('right');
+        else
+            $this->notadmin();
     }
 
     function setting(){
-        $this->_load_view('setting');
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('setting');
+        else
+            $this->notadmin();
+    }
+
+    function service(){
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('service');
+        else
+            $this->notadmin();
     }
 
     function table(){
-        $this->_load_view('table');
+        if ($this->acl->checkPermission($_SESSION['CID'], 'users', 'full|view|add|delete|update') || $this->acl->isSuperAdmin($_SESSION['CID']))
+            $this->_load_view('table');
+        else
+            $this->notadmin();
     }
 }

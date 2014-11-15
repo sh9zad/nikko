@@ -8,6 +8,8 @@ $(document).ready(function(){
 });
 
 function boxClose(){
+
+    //$('.absoluteBox').addClass('hidden');
     $('.absoluteBox').fadeOut();
     $('.fixedBox').fadeOut();
     $('.whitebg').fadeOut();
@@ -59,9 +61,8 @@ function removenotification(){
     //$('.whitebg').fadeOut();
 }
 function close_section(section){
-
 	section = "#"+section;
-	$(section).fadeOut();
+	$(section).hide('slow');
 }
 function datedifference(start, finish){
 	start = start.split("/");

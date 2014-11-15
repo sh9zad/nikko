@@ -16,6 +16,7 @@ $("#add-new-user").on('click', function(){
     post += "&username="+$("#txt-new-user-username").val();
     post += "&pass="+$("#txt-new-user-password").val();
     post += "&email="+$("#txt-new-user-email").val();
+    post += "&type=" + $("#txt-new-user-type").val();
 
     //alert(post);
 
@@ -137,7 +138,7 @@ function showUsersSectionSuccess(data){
 
     $('#tbl-users-list > tbody').html('');
 
-    $.each(data, function(i,v){
+    $.each(data['users'], function(i,v){
         var row = "<tr><td>"+i+"</td>";
         row += "<td>"+v['name']+"</td>";
         row += "<td>"+v['familyname']+"</td>";
@@ -149,6 +150,13 @@ function showUsersSectionSuccess(data){
         row += "</td></tr>";
 
         $('#tbl-users-list > tbody:first').append(row);
+    });
+
+    $("#txt-new-user-type").html('');
+    $.each(data['types'], function(i,v){
+        var option = "<option value='"+v['id']+"'>"+v['title']+"</option>";
+
+        $("#txt-new-user-type").append(option);
     });
 }
 
@@ -212,6 +220,7 @@ function showAssignSectionSuccess(data){
         $("#lst-all-roles-selected").append(option);
     });
 
+    $("#assign-role-section").removeClass('hide');
     toggleBoxes('assign-role-section', user_sections);
 }
 

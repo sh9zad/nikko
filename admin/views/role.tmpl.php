@@ -6,6 +6,11 @@
  * Time: 4:18 PM
  */
 include_once 'common/header.tmpl.php';
+include_once _PATH . 'base_controls/acl.class.php';
+if (!isset($_SESSION)) {session_start();}
+
+$acl = new ACLController();
+
 if (!$_SESSION['member']->CheckLogin())
 {
     header('Location: ../index.php?control=main&action=enter');
@@ -77,17 +82,42 @@ if (!$_SESSION['member']->CheckLogin())
                 </div>
             </div>
         </div>
-
+<?php
+    if ($acl->checkPermission($_SESSION['CID'], 'tables', 'full|view') || $acl->isSuperAdmin($_SESSION['CID'])) {
+?>
+        <!-- Assign Table Permissions  -->
         <section id="assign-table-columns-section">
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Assign Table Access</h2>
                     <label>Select Table:</label>
                     <div class="form-group"><select id="lst-table-names"></select></div>
-                    <div class="form-group"><input type="button" class="btn btn-warning" id="btn-show-table-columns" value="Show"><div class="form-group">
+                    <div class="form-group"><input type="button" class="btn btn-warning" id="btn-show-table-columns" value="Show"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" id="assign-table-permission-role">
+                    <div class="panel panel-primary fixedBox">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Assign Permissions
+                                <button type="button" class="close" onclick="return boxClose()">×</button>
+                            </h3>
+                        </div>
+                        <input type="hidden" id="assign-table-permission-role-id">
+                        <div class="panel-body">
+                            <label>Role Name</label>
+                            <div class="form-group"><input type="text" class="form-control" disabled id="assign-table-permission-role-title"></div>
+                            <table class="table table-bordered table-hover table-striped tablesorter" id="tbl-assign-table-permission-role">
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="form-group"><input type="button" id="btn-assign-table-permission-role" class="btn btn-warning" value="Assign"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+<?php }?>
     </div>
 
 </section>

@@ -52,7 +52,7 @@ class MainController extends Controller{
                 $_SESSION['ACL'] = $this->acl;
                 $this->acl->setUser($_SESSION['CID']);
 
-                if ($_SESSION['CID'] == 1){
+                if ($this->acl->isSuperAdmin($_SESSION['CID']) || $this->acl->isAdministrator($_SESSION['CID'])){
                     header('Location: admin/index.php');
                 }
                 else {
@@ -73,13 +73,8 @@ class MainController extends Controller{
         header('Location: index.php?control=main&action=enter');
     }
 
-    function organization(){
-        if ($this->acl->checkPermission($_SESSION['CID'], "organization", "full|view|update|delete|insert")){
-            $this->_load_view('organization');
-        }
-        else{
-            echo('No Permission.');
-        }
+    function service(){
+        $this->_load_view("service");
     }
 
 }
