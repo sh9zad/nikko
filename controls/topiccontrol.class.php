@@ -12,7 +12,7 @@ include_once _PATH . "base/ajaxcontroller.php";
 include_once _PATH . "base_controls/acl.class.php";
 include_once _PATH . "models/topic.class.php";
 include_once _PATH . "models/categories.class.php";
-include_once _PATH . "models/topicsent.class.php";
+//include_once _PATH . "models/topicsent.class.php";
 
 class TopicController extends AjaxController{
     private $topic;
@@ -21,7 +21,7 @@ class TopicController extends AjaxController{
     function TopicController(){
         $this->topic = new TopicModel();
         $this->categories = new CategoriesModel();
-        $this->topic_sent = new TopicSentModel();
+        ///$this->topic_sent = new TopicSentModel();
     }
     function gettopic($arg){
         if ($_SESSION['ACL']->checkPermission($_SESSION['CID'], 'forum', 'full')){
@@ -67,11 +67,11 @@ class TopicController extends AjaxController{
         return $this->reply($result);
     }
     function senttopic($arg){
-        if ($_SESSION['ACL']->checkPermission($_SESSION['CID'], 'forum', 'full')){
+        /*if ($_SESSION['ACL']->checkPermission($_SESSION['CID'], 'forum', 'full')){
             $date = jdate('Y/m/j','','','','en');
             $time = jdate('H:i:s','','','','en');
             return $this->reply($this->topic_sent->insert(array($arg['tid'],$_SESSION['CID'],$date,$time)));
-        }
+        }*/
     }
     function searchtopic($arg){
         if ($_SESSION['ACL']->checkPermission($_SESSION['CID'], 'forum', 'full')){

@@ -11,8 +11,8 @@ include __DIR__ . "/include/constants.inc";
 require_once _PATH . "controls/maincontrol.class.php";
 require_once _PATH . "base/members.class.php";
 require_once _PATH . "base_controls/acl.class.php";
-require_once _PATH  . "controls/categoriescontrol.class.php";
-require_once _PATH  . "controls/topiccontrol.class.php";
+require_once _PATH . "controls/categoriescontrol.class.php";
+require_once _PATH . "controls/topiccontrol.class.php";
 require_once _PATH . "controls/servicecontrol.class.php";
 
 if (!isset($_SESSION)) {session_start();}
