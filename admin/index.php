@@ -87,7 +87,9 @@ switch($control){
         $db->run($action, (isset($_POST['action'])) ? $_POST : $_GET);
         break;
     default:
-        $_POST['Error'] = "Controller Not Found";
-        print_r($_POST);
+        $_POST['Error'] = "<h1>NIKKO Framework</h1><br>
+                            <h2>Error: <br></h2>
+                            Controller Not Found: <strong>$control</strong> <br>";
+        echo $_POST['Error'];
         break;
 }
