@@ -95,11 +95,13 @@ if (!$_SESSION['member']->CheckLogin())
         <!-- Assign Table Permissions  -->
         <section id="assign-table-columns-section">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2>Assign Table Access</h2>
-                    <label>Select Table:</label>
-                    <div class="form-group"><select id="lst-table-names"></select></div>
-                    <div class="form-group"><input type="button" class="btn btn-warning" id="btn-show-table-columns" value="Show"></div>
+                <div class="col-lg-10">
+                    <div class="tile">
+                        <h2 class="tile-title">Assign Table Access<button class="close" onclick="return boxClose()" type="button">×</button></h2>
+                        <label>Select Table:</label>
+                        <div class="form-group"><select class="form-control" id="lst-table-names"></select></div>
+                        <div class="form-group"><input type="button" class="btn btn-warning" id="btn-show-table-columns" value="Show"></div>
+                    </div>
                 </div>
             </div>
             <div class="row">

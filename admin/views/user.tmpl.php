@@ -19,7 +19,6 @@ if (!$_SESSION['member']->CheckLogin())
     <h4 class="page-title">USERS</h4>
     <!-- User Section -->
     <div class="block-area" id="defaultStyle">
-        <h3 class="block-title">Users Rows</h3>
         <div class="row">
             <form class="validate">
                 <div class="col-lg-3">

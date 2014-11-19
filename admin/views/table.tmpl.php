@@ -20,7 +20,6 @@ if (!$_SESSION['member']->CheckLogin())
     <!-- User Section -->
     <!-- Object Section -->
     <section class="block-area" id="defaultStyle">
-        <h3 class="block-title">Tables List</h3>
         <div class="row">
             <div class="col-lg-12">
                 <label> List of Database Tables:</label>
@@ -37,12 +36,10 @@ if (!$_SESSION['member']->CheckLogin())
             </div>
         </div>
         <div id="details-table-section" class="col-lg-11 hidden">
-            <div class="panel panel-primary fixedBox">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Table Details
-                        <button type="button" class="close" onclick="return Close('details-table-section')">×</button>
-                    </h3>
-                </div>
+            <div class="tile">
+                <h3 class="tile-title"><i class="fa fa-long-arrow-right"></i> Table Details
+                    <button type="button" class="close" onclick="return Close('details-table-section')">×</button>
+                </h3>
                 <input type="hidden" id="edit-object-id">
                 <div class="panel-body">
                     <table class="table table-bordered table-hover table-striped tablesorter" id="tbl-table-columns">

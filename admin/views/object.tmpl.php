@@ -19,7 +19,6 @@ if (!$_SESSION['member']->CheckLogin())
     <!-- User Section -->
 <!-- Object Section -->
 <section class="block-area" id="defaultStyle">
-    <h3 class="block-title">Object Rows</h3>
     <div class="row">
         <div class="col-lg-4">
             <form class="validate">
@@ -42,12 +41,10 @@ if (!$_SESSION['member']->CheckLogin())
             </div>
         </div>
         <div id="edit-object-section" class="col-lg-6 absoluteBox" style="display: none;">
-            <div class="panel panel-primary fixedBox">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Update Object Title
-                        <button type="button" class="close" onclick="return boxClose()">×</button>
-                    </h3>
-                </div>
+            <div class="tile">
+                <h3 class="tile-title"><i class="fa fa-long-arrow-right"></i> Update Object Title
+                    <button type="button" class="close" onclick="return boxClose()">×</button>
+                </h3>
                 <input type="hidden" id="edit-object-id">
                 <div class="panel-body">
                     <form class="validate">
