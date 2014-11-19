@@ -12,8 +12,8 @@ $(document).ready(function(){
 /* Buttons */
 $("#add-new-object").on('click', function(){
     var post = "control=object&action=addobject&title="+$("#txt-new-object").val();
-    alert(post);
-    //ajaxCall(post, url,shownotification('Wait'), addNewObjectSuccess, removenotification);
+    //alert(post);
+    ajaxCall(post, url,shownotification('Wait'), addNewObjectSuccess, removenotification);
 });
 
 $("#btn-edit-object").on('click', function(){
