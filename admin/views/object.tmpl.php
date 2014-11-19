@@ -11,11 +11,15 @@ if (!$_SESSION['member']->CheckLogin())
     header('Location: ../index.php?control=main&action=enter');
 }
 ?>
-
-
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Home</a></li>
+        <li class="active">OBJECT</li>
+    </ol>
+    <h4 class="page-title">OBJECT</h4>
+    <!-- User Section -->
 <!-- Object Section -->
-<section id="objects-section" class="section-wrapper">
-    <h1>Object</h1>
+<section class="block-area" id="defaultStyle">
+    <h3 class="block-title">Object Rows</h3>
     <div class="row">
         <div class="col-lg-4">
             <form class="validate">

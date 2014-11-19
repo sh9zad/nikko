@@ -11,10 +11,16 @@ if (!$_SESSION['member']->CheckLogin())
     header('Location: ../index.php?control=main&action=enter');
 }
 ?>
-
-    <!-- Right Section -->
-    <section id="right-section" class="section-wrapper">
-        <h1>Rights</h1>
+    <!-- Role Section -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Home</a></li>
+        <li class="active">RIGHT</li>
+    </ol>
+    <h4 class="page-title">RIGHT</h4>
+    <!-- User Section -->
+    <!-- Object Section -->
+    <section class="block-area" id="defaultStyle">
+        <h3 class="block-title">Right</h3>
         <div class="row">
             <div class="col-lg-4">
                 <form class="validate">

@@ -12,8 +12,15 @@ if (!$_SESSION['member']->CheckLogin())
     header('Location: ../index.php?control=main&action=enter');
 }
 ?>
-    <section id="objects-section" class="section-wrapper">
-        <h1>Tables</h1>
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Home</a></li>
+        <li class="active">TABLE</li>
+    </ol>
+    <h4 class="page-title">TABLE</h4>
+    <!-- User Section -->
+    <!-- Object Section -->
+    <section class="block-area" id="defaultStyle">
+        <h3 class="block-title">Tables List</h3>
         <div class="row">
             <div class="col-lg-12">
                 <label> List of Database Tables:</label>

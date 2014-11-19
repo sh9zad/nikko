@@ -5,8 +5,8 @@
  * Date: 5/24/14
  * Time: 4:36 PM
 */
-include $_SERVER['DOCUMENT_ROOT'] . '/nikko/' ."/include/settings.inc";
-include $_SERVER['DOCUMENT_ROOT'] . '/nikko/' ."/include/constants.inc";
+include $_SERVER['DOCUMENT_ROOT'] . '/vas/' . "include/settings.inc";
+include $_SERVER['DOCUMENT_ROOT'] . '/vas/' . "include/constants.inc";
 
 
 require_once _PATH . "admin/controls/maincontrol.class.php";

@@ -85,6 +85,7 @@ function deleteObjectSuccess(data){
 }
 
 function showObjectListSuccess(data){
+    //console.log(data);
     data = JSON.parse(data);
 
     $('#tbl-objects-list > tbody').html('');

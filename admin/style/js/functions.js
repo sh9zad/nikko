@@ -2,7 +2,7 @@ $(document).ready(function(){
     /* --------------------------------------------------------
 	Template Settings
     -----------------------------------------------------------*/
-    
+/*
     var settings =  '<a id="settings" href="#changeSkin" data-toggle="modal">' +
 			'<i class="fa fa-gear"></i> Change Skin' +
 		    '</a>' +   
@@ -65,7 +65,7 @@ $(document).ready(function(){
 			    '</div>' +
 			'</div>' +
 		    '</div>';
-    $('#main').prepend(settings);
+    $('#main').prepend(settings);*/
             
     $('body').on('click', '.template-skins > a', function(e){
 	e.preventDefault();

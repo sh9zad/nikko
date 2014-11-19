@@ -194,7 +194,7 @@ function loadUserSuccess(data){
 }
 
 function showAssignSectionSuccess(data){
-
+    console.log(data);
     data = JSON.parse(data);
 
     var users = data['users'];

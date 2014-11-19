@@ -12,10 +12,14 @@ if (!$_SESSION['member']->CheckLogin())
 }
 ?>
 
-
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Home</a></li>
+        <li class="active">USERS</li>
+    </ol>
+    <h4 class="page-title">USERS</h4>
     <!-- User Section -->
-    <section id="users-section" class="section-wrapper">
-        <h1>Users</h1>
+    <div class="block-area" id="defaultStyle">
+        <h3 class="block-title">Users Rows</h3>
         <div class="row">
             <form class="validate">
                 <div class="col-lg-3">
@@ -38,7 +42,7 @@ if (!$_SESSION['member']->CheckLogin())
             <div class="col-lg-9">
                 <label>Display User Data</label>
                 <div class="table-responsive overflow">
-                    <table class="table table-bordered table-hover table-striped tablesorter" id="tbl-users-list">
+                    <table class="table tile" id="tbl-users-list">
                         <thead>
                         <tr>
                             <th class="header"><i class="fa fa-columns"></i></th><th class="header">Name <i class="fa fa-sort"></i></th><th class="header">Family <i class="fa fa-sort"></i></th><th class="header">Username <i class="fa fa-sort"></i></th><th class="header">Email <i class="fa fa-sort"></i></th><th class="header">Del</th><th class="header">Edit</th><th class="header">Roles</th>
@@ -50,15 +54,12 @@ if (!$_SESSION['member']->CheckLogin())
             </div>
 
             <div id="edit-user-section" class="hide col-lg-6 absoluteBox">
-                <div class="panel panel-primary fixedBox">
+                <div class="tile">
                     <input type="hidden" id="edit-edit-id">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Edit User
+                        <h2 class="tile-title"><i class="fa fa-long-arrow-right"></i> Edit User
                             <button type="button" class="close" onclick="return boxClose()">×</button>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
+                        </h2>
+                    <div class="p-10">
                         <label> Name:</label>
                         <form class="validate">
                             <div class="form-group"><input name="name" class="form-control" type="text" id="txt-edit-user-name"></div>
@@ -76,7 +77,7 @@ if (!$_SESSION['member']->CheckLogin())
                 </div>
             </div>
             <div id="assign-role-section" class="hide col-lg-6 absoluteBox">
-                <div class="panel panel-primary fixedBox">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Assign Roles
                             <button type="button" class="close" onclick="return boxClose()">×</button>
@@ -103,7 +104,7 @@ if (!$_SESSION['member']->CheckLogin())
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <script type="text/javascript" src="js/user.js"></script>
 <?php
 include_once 'common/footer.tmpl.php';
