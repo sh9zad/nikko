@@ -22,7 +22,6 @@ $("#add-new-user").on('click', function(){
 
     ajaxCall(post, url, shownotification("Wait"), addNewUserSuccess, removenotification);
 });
-
 $("#edit-new-user").on('click', function(){
     var post = "control=user&action=edituser&name="+$("#txt-edit-user-name").val();
     post += "&family="+$("#txt-edit-user-family").val();
@@ -91,7 +90,9 @@ function getUserRole(id){
 
     var post = "control=role&action=assign&user_id="+id;
 
-    ajaxCall(post, url, shownotification("Wait"), showAssignSectionSuccess, removenotification);
+    alert(post);
+
+    //ajaxCall(post, url, shownotification("Wait"), showAssignSectionSuccess, removenotification);
 }
 
 /* Ajax Success Functions */

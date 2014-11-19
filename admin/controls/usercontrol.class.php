@@ -6,7 +6,7 @@
  * Time: 1:22 PM
  */
 
-require_once _PATH . '/base/ajaxcontroller.php';
+require_once _PATH . 'base/ajaxcontroller.php';
 require_once _PATH . 'base/members.class.php';
 include_once _PATH . 'base_models/object.class.php';
 include_once _PATH . 'base_models/membertypes.class.php';
