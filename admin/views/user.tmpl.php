@@ -77,12 +77,10 @@ if (!$_SESSION['member']->CheckLogin())
                 </div>
             </div>
             <div id="assign-role-section" class="hide col-lg-6 absoluteBox">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Assign Roles
+                <div class="tile">
+                        <h3 class="tile-title"><i class="fa fa-long-arrow-right"></i> Assign Roles
                             <button type="button" class="close" onclick="return boxClose()">×</button>
                         </h3>
-                    </div>
                     <input type="hidden" id="edit-role-user-id">
                     <div class="panel-body">
                         <label>User:</label>
@@ -91,8 +89,8 @@ if (!$_SESSION['member']->CheckLogin())
                         <label>Roles List:</label>
                         <div class="form-group"><select multiple="" class="form-control" id="lst-all-roles"></select>
                             <ul class="pager">
-                                <li><a href="#" id="selectitem"><i class="fa fa-arrow-down">>></i></a></li>
-                                <li><a href="#" id="removeitem"><i class="fa fa-arrow-up"><<</i></a></li>
+                                <li><a href="#" id="selectitem" class="black"><i class="fa fa-arrow-down"></i></a></li>
+                                <li><a href="#" id="removeitem" class="black"><i class="fa fa-arrow-up"></i></a></li>
                             </ul>
                         </div>
                         <div class="form-group">

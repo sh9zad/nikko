@@ -90,9 +90,9 @@ function getUserRole(id){
 
     var post = "control=role&action=assign&user_id="+id;
 
-    alert(post);
+    //alert(post);
 
-    //ajaxCall(post, url, shownotification("Wait"), showAssignSectionSuccess, removenotification);
+    ajaxCall(post, url, shownotification("Wait"), showAssignSectionSuccess, removenotification);
 }
 
 /* Ajax Success Functions */

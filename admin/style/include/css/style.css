@@ -1,3 +1,9 @@
+/* My Styles */
+.black{
+    color: #000000;
+}
+/************/
+
 @font-face {
     font-family: 'open-sans-semibold';
     src: url('../fonts/opan-sans/OpenSans-Semibold-webfont.eot');
