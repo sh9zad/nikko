@@ -161,6 +161,8 @@ function showAssignTablePermissionSuccess(data){
 
         $("#lst-table-names").append(option);
     });
+
+    $("#tables-list").removeClass('hide');
 }
 
 function assignPermissionSuccess(data){
