@@ -20,13 +20,12 @@ if (!$_SESSION['member']->CheckLogin())
 <!-- Role Section -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="#">Home</a></li>
-        <li class="active">TABLE</li>
+        <li class="active">ROLES</li>
     </ol>
     <h4 class="page-title">Roles</h4>
     <!-- User Section -->
     <!-- Object Section -->
     <section class="block-area" id="defaultStyle">
-    <h3 class="block-title">Roles</h3>
     <div class="row">
         <div class="col-lg-4">
             <label>Add New Role</label>
