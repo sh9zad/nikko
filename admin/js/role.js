@@ -150,6 +150,10 @@ function showAssignTableSuccess(data){
     });
     row += "</tr>";
     $('#tbl-assign-table-permission-role > thead:first').append(row);
+
+    $("#assign-table-permission-role").removeClass('hide');
+    $("#assign-table-permission-role").fadeIn();
+
 }
 
 function showAssignTablePermissionSuccess(data){
@@ -163,6 +167,7 @@ function showAssignTablePermissionSuccess(data){
     });
 
     $("#tables-list").removeClass('hide');
+    $("#tables-list").fadeIn();
 }
 
 function assignPermissionSuccess(data){
@@ -176,7 +181,8 @@ function assignPermissionSuccess(data){
 
         alert("Permissions assigned successfully.");
 
-        $("#assign-permission-role").fadeOut();
+        $("#assign-table-permission-role").fadeOut();
+        $("#assign-table-permission-role").addClass('hide');
     }
     else {
         alert('Error in inserting the permission.');
@@ -234,10 +240,10 @@ function showAssignPermissionSuccess(data){
             });
 
             if (isAssigned){
-                row += "<td><input class='myClass' checked type='checkbox' id='chk_"+rights[i]['id']+"' value='"+v['id']+"-"+rights[i]['id']+"'></td>"
+                row += "<td><input class='myClass' checked type='checkbox' id='chk_"+rights[i]['id']+"' value='"+v['id']+"-"+rights[i]['id']+"'/></td>"
             }
             else {
-                row += "<td><input class='myClass' type='checkbox' id='chk_"+rights[i]['id']+"' value='"+v['id']+"-"+rights[i]['id']+"'></td>"
+                row += "<td><input class='myClass' type='checkbox' id='chk_"+rights[i]['id']+"' value='"+v['id']+"-"+rights[i]['id']+"'/></td>"
             }
 
         }

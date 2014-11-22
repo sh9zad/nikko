@@ -20,7 +20,6 @@ if (!$_SESSION['member']->CheckLogin())
     <!-- User Section -->
     <!-- Object Section -->
     <section class="block-area" id="defaultStyle">
-        <h3 class="block-title">Right</h3>
         <div class="row">
             <div class="col-lg-4">
                 <form class="validate">
@@ -42,13 +41,13 @@ if (!$_SESSION['member']->CheckLogin())
                     </table>
                 </div>
             </div>
-            <div id="edit-right-section" class="col-lg-6 absoluteBox" style="display: none;">
-                <div class="panel panel-primary fixedBox">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Update Rights
-                            <button type="button" class="close" onclick="return boxClose()">×</button>
-                        </h3>
-                    </div>
+            <div id="edit-right-section" class="col-lg-6 absoluteBox hide">
+                <div class="tile fixedBox">
+
+                    <h3 class="tile-title"><i class="fa fa-long-arrow-right"></i> Update Rights
+                        <button type="button" class="close" onclick="return boxCloseID('edit-right-section')">×</button>
+                    </h3>
+
                     <input type="hidden" id="edit-right-id">
                     <div class="panel-body">
                         <form class="validate">

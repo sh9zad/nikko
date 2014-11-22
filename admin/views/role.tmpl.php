@@ -95,18 +95,20 @@ if (!$_SESSION['member']->CheckLogin())
             <div class="row">
                 <div class="col-lg-10">
                     <div id="tables-list" class="tile hide" >
-                        <h2 class="tile-title">Assign Table Access<button class="close" onclick="return boxClose()" type="button">×</button></h2>
+                        <h2 class="tile-title">Assign Table Access<button class="close" onclick="return boxCloseID('tables-list')" type="button">×</button></h2>
+                        <div class="panel-body">
                         <label>Select Table:</label>
                         <div class="form-group"><select class="form-control" id="lst-table-names"></select></div>
                         <div class="form-group"><input type="button" class="btn btn-warning" id="btn-show-table-columns" value="Show"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6" id="assign-table-permission-role">
+                <div class="col-lg-6 hide" id="assign-table-permission-role">
                     <div class="tile fixedBox">
                             <h3 class="tile-title"><i class="fa fa-long-arrow-right"></i> Assign Permissions
-                                <button type="button" class="close" onclick="return boxClose()">×</button>
+                                <button type="button" class="close" onclick="return boxCloseID('assign-table-permission-role')">×</button>
                             </h3>
                         <input type="hidden" id="assign-table-permission-role-id">
                         <div class="panel-body">

@@ -49,6 +49,7 @@ function editRightSuccess(data){
 
     if (data != false && data != "false"){
         $("#edit-right-section").fadeOut();
+        $("#edit-right-section").addClass('hide');
         $("#txt-edit-right").val("");
 
         var post = "control=right&action=getlist";
@@ -70,6 +71,7 @@ function loadRightSuccess(data){
     });
 
     $("#edit-right-section").fadeIn();
+    $("#edit-right-section").removeClass('hide');
 }
 
 function deleteRightSuccess(data){

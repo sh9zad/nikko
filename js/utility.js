@@ -7,8 +7,14 @@ $(document).ready(function(){
     })
 });
 
-function boxClose(){
+function boxCloseID(boxId){
+    //alert(boxId);
+    //$("#" + boxId).addClass('hide');
+    $("#" + boxId).fadeOut();
+}
 
+function boxClose(){
+//alert('box');
     //$('.absoluteBox').addClass('hidden');
     $('.absoluteBox').fadeOut();
     $('.fixedBox').fadeOut();
