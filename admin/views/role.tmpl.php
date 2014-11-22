@@ -22,7 +22,7 @@ if (!$_SESSION['member']->CheckLogin())
         <li><a href="#">Home</a></li>
         <li class="active">TABLE</li>
     </ol>
-    <h4 class="page-title">TABLE</h4>
+    <h4 class="page-title">Roles</h4>
     <!-- User Section -->
     <!-- Object Section -->
     <section class="block-area" id="defaultStyle">
@@ -71,12 +71,10 @@ if (!$_SESSION['member']->CheckLogin())
             </div>
         </div>
         <div id="assign-permission-role" class="col-lg-6 absoluteBox" style="display: none;">
-            <div class="panel panel-primary fixedBox">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Assign Permissions
-                        <button type="button" class="close" onclick="return boxClose()">×</button>
-                    </h3>
-                </div>
+            <div class="tile fixedBox">
+                <h3 class="tile-title"><i class="fa fa-long-arrow-right"></i> Assign Permissions
+                    <button type="button" class="close" onclick="return boxClose()">×</button>
+                </h3>
                 <input type="hidden" id="assign-permission-role-id">
                 <div class="panel-body">
                     <label>Role Name</label>

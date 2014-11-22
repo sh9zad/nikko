@@ -5,7 +5,7 @@
  * Date: 5/24/14
  * Time: 4:40 PM
  */
-include_once 'common/header.tmpl.php';
+include_once  'common/header.tmpl.php';
 if (isset($_SESSION['ER'])){ ?>
     <div class="alert alert-dismissable alert-info">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -16,33 +16,32 @@ if (isset($_SESSION['ER'])){ ?>
         <div id="stars">
             <div id="container" class="logincontainer">
                 <header>
-                    <h1 id="logo">کنترل پنل مدیر</h1>
+                    <h1>System Login</h1>
                 </header>
                 <div id="application">
 
                     <nav id="secondary">
                         <ul>
-                            <li class="current"><a href="#">ورود</a></li>
+                            <li class="current"><a href="#">Login</a></li>
                         </ul>
                     </nav>
 
-                    <section id="content">
+                    <section id="content" style="direction: ltr;">
                         <br /><br />
                         <form action="index.php" method="post" autocomplete="off">
                             <input type="hidden" name="control" value="main">
                             <input type="hidden" name="action" value="login">
-                            <section>
-                                <label for="username">نام کاربری</label>
+                            <section style="direction: ltr;">
+                                <label for="username">Username</label>
                                 <div>
-                                    <input id="username" type="text" name="username" placeholder="نام کاربری" class="required" />
+                                    <input id="username" type="text" name="username" placeholder="Username" class="required" />
                                 </div>
                             </section>
-
                             <section>
-                                <label for="password">رمز عبور</label>
+                                <label for="password">Password</label>
                                 <div>
-                                    <input id="pass" type="password" name="pass" placeholder="رمز عبور" class="required" />
-                                    <br /><br /><button type="submit" value="ورود" class="button primary" id="btn_system_login">ورود</button>
+                                    <input id="pass" type="password" name="pass" placeholder="Password" class="required" />
+                                    <br /><br /><button type="submit" value="ورود" class="button primary" id="btn_system_login">Enter</button>
                                 </div>
                             </section>
                         </form>
