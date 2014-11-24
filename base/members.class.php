@@ -14,7 +14,19 @@ class Members extends Model{
 	function Members(){
         parent::Model('members');
 
-		$this->cols = array("id", "name", "familyname" , "username", "password", "type", "manager_id", "email", "active");
+		$this->cols = array("id", "name", "familyname" ,
+                            "username", "password", "type",
+                            "manager_id", "email", "active", "picture");
+        $this->schema = array("0", "txt", "txt" ,
+            "txt", "0", "txt",
+            "txt", "txt", "num", "img");
+        $this->ids = array("0", "txt-user-name", "txt-user-familyname" ,
+            "txt-user-username", "0", "txt-user-type",
+            "txt-user-manager", "txt-user-email", "num-user-active", "img-user-image");
+
+        $this->labels = array("0", "Name", "Family" ,
+            "Username", "0", "Type",
+            "Manager", "Email", "Active", "Image");
 
         $this->member_roles = new MembersRolesModel();
 	}

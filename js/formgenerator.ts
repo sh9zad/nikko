@@ -80,6 +80,14 @@ class FormGenerator{
                     output += this.createDatePicker(item, this.ids[count], this.labels[count]);
                 }
             }
+            else if (item.substr(0, 3) == "img"){
+                if (this.data){
+                    output += this.createImageLI(item, this.ids[count], this.labels[count], this.data[this.cols[count]]);
+                }
+                else{
+                    output += this.createImageLI(item, this.ids[count], this.labels[count]);
+                }
+            }
 
 
             count++;
@@ -237,6 +245,12 @@ class FormGenerator{
         }
 
         return input;
+    }
+
+    private createImageLI(img_schema : string, img_id : string, img_label : string, data? : any) : string {
+        var input = "<li>"+img_label+"</li>";
+        input += "<li><img id="+img_id+" src="+data+" class='profile_image'></li>";
+        return input
     }
 
     private createElement(type:string){

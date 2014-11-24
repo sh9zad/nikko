@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/js/formgenerator.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/typescript/scripts/word2md.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/js/formgenerator.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/typescript/scripts/word2md.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

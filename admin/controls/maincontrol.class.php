@@ -103,4 +103,8 @@ class MainController extends Controller{
         else
             $this->notadmin();
     }
+
+    function profile(){
+        $this->_load_view('profile');
+    }
 }

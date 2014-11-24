@@ -31,8 +31,22 @@ class UserController extends AjaxController{
 
     function getlist($arg){
         $result = array();
-        $result['users'] = $this->members->getAllUsers();
-        $result['types'] = $this->member_types->getList();
+
+        if (isset($arg['id'])){
+            $result['user'] = $this->members->getList($arg['id']);
+            if (sizeof($result['user']) > 0 && $result['user'] != false) {
+                $result['user'] = $result['user'][0];
+                $result['error'] = "false";
+                $result['table_info'] = $this->members->getTableInfo();
+            }
+            else {
+                $result['error'] = "true";
+            }
+        }
+        else {
+            $result['users'] = $this->members->getAllUsers();
+            $result['types'] = $this->member_types->getList();
+        }
         $this->reply($result);
     }
 

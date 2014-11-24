@@ -14,6 +14,7 @@ include_once _PATH . "base_controls/acl.class.php";
         <!-- Java Scripts -->
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
         <script src="../js/utility.js"></script>
+        <script src="../js/formgenerator.js"></script>
         <script src="js/jquery.validate.js"></script>
         <script src="js/jquery.ba-hashchange.js"></script>
 
@@ -94,7 +95,7 @@ include_once _PATH . "base_controls/acl.class.php";
                     <img class="profile-pic animated" src="style/include/img/profile-pic.png" alt="">
                 </a>
                 <ul class="dropdown-menu profile-menu">
-                    <li><a href="#">My Profile</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+                    <li><a href="index.php?control=main&action=profile">My Profile</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
                     <li><a href="#">Messages</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
                     <li><a href="#">Settings</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
                     <li><a href="../index.php?control=main&action=logout">Sign Out</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
