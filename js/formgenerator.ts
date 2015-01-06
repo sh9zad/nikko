@@ -2,7 +2,7 @@
  * Created by sh.hasanzadeh on 8/23/14.
  */
 
-class FormGenerator{
+class FormGenerator {
     private schema : string [];
     private labels : string [];
     private ids : string [];
@@ -31,6 +31,7 @@ class FormGenerator{
     set checked(data : any[]) { this.checked_data = data }
 
     createEmptyFormList(data? : any[], cols? : any[]):string{
+        alert(data);
        if (data) {this.data = data; }
        if (cols) {this.cols = cols; }
        //console.log(this.cols);

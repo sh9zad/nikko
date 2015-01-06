@@ -16,6 +16,7 @@ function showUserInfoSuccess(data){
 
     if (data['error'] == 'false' || data['error'] == false){
         var formGen = new FormGenerator(data['table_info']['schema'], data['table_info']['labels'], data['table_info']['ids']);
+        formGen.formdata = data['user'];
 
         $("#section-user-info").html(formGen.createEmptyFormList(data['user'], data['table_info']['ids']));
     }
