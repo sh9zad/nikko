@@ -32,10 +32,6 @@ if (!$_SESSION['member']->CheckLogin())
         <div class="cover p-relative">
             <img src="" class="w-100" alt="">
             <img class="profile-pic" src="style/include/img/profile-pic.png" alt="">
-            <div class="profile-btn">
-                <button class="btn btn-alt btn-sm"><i class="icon-bubble"></i> <span>Message</span></button>
-                <button class="btn btn-alt btn-sm"><i class="icon-user-2"></i> <span>Friend</span></button>
-            </div>
         </div>
         <div id="section-user-info" class="p-5 m-t-15">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget risus rhoncus, cursus purus vitae, venenatis eros. Phasellus at tincidunt risus. Integer sed massa fermentum, feugiat arcu quis, ultrices nisi. Quisque commodo nisi scelerisque, tempus diam ac, dignissim tellus. Mauris adipiscing elit tortor, dignissim auctor diam mollis sed. Nulla eu dui non velit accumsan scelerisque eget et felis.

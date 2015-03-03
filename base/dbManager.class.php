@@ -88,15 +88,29 @@ class DBManager{
      * @return bool|mysqliresult false for queries with errors and results for the correct queries.
      */
     function executeQuery($query){
-         //return ($this->connection->connect_error);
+         //return ($this->connection->connect_error);+
         $this->connectDB();
-		$result = $this->connection->query($query);
-        //return ($this->connection);
-
-		if (!$result){
-			$this->dbErrorHandler("Could not execute query: ".$query."\r\n");
-			return false;
-		}
+        /* Run transaction queries. */
+        if (is_array($query)) {
+            $this->connection->autocommit(FALSE);
+            foreach ($query as $q){
+                $this->connection->query($q);
+            }
+            $result = $this->connection->commit();
+            if ($this->connection->errorno == '' || $this->connection->errorno == null){
+                $this->dbErrorHandler($this->connection->error_message);
+                return false;
+            }
+        }
+        else {
+            /* Run single query. */
+            $result = $this->connection->query($query);
+            //return ($this->connection);
+            if (!$result){
+                $this->dbErrorHandler("Could not execute query: ".$query."\r\n");
+                return false;
+            }
+        }
 
         //$this->connection->close();
 		return $result;
