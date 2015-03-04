@@ -58,7 +58,7 @@ $db = new DBController();
 
 if(!$acl_controller->isAdministrator($_SESSION['CID'])){
     $control = 'main';
-    $action = 'notadmin';
+    $action  = 'notadmin';
 }
 
 switch($control){
